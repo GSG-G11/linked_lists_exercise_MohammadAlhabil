@@ -16,19 +16,19 @@ function SinglyLinkedList(array = []) {
 }
 
 SinglyLinkedList.prototype.push = function(val) {
-   let newNode = new Node(val);
+    let newNode = new Node(val);
 
-   if(this.head === null){
+    if(this.head === null){
         this.head = newNode;
         this.tail = this.head;
-   }else{
-       this.tail.next = newNode;
-       this.tail = newNode;
-   }
+    }else{
+        this.tail.next = newNode;
+        this.tail = newNode;
+    }
 
-   this.length++;
+    this.length++;
 
-   return this;
+    return this;
 }
 
 SinglyLinkedList.prototype.unshift = function(val){
@@ -155,5 +155,17 @@ SinglyLinkedList.prototype.pop = function() {
 
 
 SinglyLinkedList.prototype.reverse = function() {
+    let prev = null;
+    let next = null;
+    let current = this.head;
 
+    while (current!== null) {
+        next = current.next;
+        current.next = prev;
+        prev = current;
+        current = next;
+    }
+
+    this.head = prev;
+    return prev;
 }
